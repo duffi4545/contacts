@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+    database:
+        image: 'mysql:8.0.32'
+        environment:
+            MYSQL_ROOT_PASSWORD: appTest
+            MYSQL_DATABASE: contacts
+        ports:
+            - '3306:3306'
+        networks:
+        - app-network
+
+networks:
+  app-network:
+    driver: bridge    
