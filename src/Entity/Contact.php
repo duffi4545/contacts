@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -15,15 +16,26 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: 'Jméno nesmí obsahovat čísla',
+    )]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: 'Příjmení nesmí obsahovat čísla',
+    )]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $phoneNumber = null;
-
+    
     #[ORM\Column(length: 255)]
+    #[Assert\Email(message: 'Toto není validní email')]
     private ?string $email = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

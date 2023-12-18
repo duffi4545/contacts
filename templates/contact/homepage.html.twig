@@ -3,28 +3,35 @@
 {% block title %}Kontakty{% endblock %}
 
 {% block body %}
+<h1>Editace kontaktu</h1>
+<a href="{{ path('app_contact_new') }}"><button>Nový kontakt</button></a>
 <table border="1">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone Number</th>
+                <th>Jméno</th>
+                <th>Příjmení</th>
+                <th>Telefon</th>
                 <th>Email</th>
-                <th>Note</th>
+                <th>Poznámka</th>
                 <th>Akce</th>
             </tr>
         </thead>
         <tbody>
             {% for contact in contacts %}
                 <tr>
-                    <td>{{ contact.id }}</td>
                     <td>{{ contact.firstName }}</td>
                     <td>{{ contact.lastName }}</td>
                     <td>{{ contact.phoneNumber }}</td>
                     <td>{{ contact.email }}</td>
                     <td>{{ contact.note }}</td>
-                    <td>akce</td>
+                    <td>
+                        <a href="{{ path('app_contact_edit', {'name': contact.firstName ~ '-' ~ contact.lastName, 'id': contact.id}) }}">
+                            <button>Upravit</button>
+                        </a>
+                        <a href="{{ path('app_contact_delete', {'identifier': contact.id}) }}">
+                            <button>Smazat</button>
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

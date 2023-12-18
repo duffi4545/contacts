@@ -3,3 +3,10 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+app_contact_edit:
+    path: /{name}-{id}
+    controller: App\Controller\ContactController::renderEditContact
+    requirements:
+        name: '[\p{L}0-9-]+'
+        id: '\d+'
