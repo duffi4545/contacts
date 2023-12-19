@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ContactController extends AbstractController
 {
@@ -24,10 +25,18 @@ class ContactController extends AbstractController
     }
 
     #[Route('/', name: 'app_contact')]
-    public function RenderHompeage(): Response
+    public function RenderHompeage(Request $request, PaginatorInterface $paginator): Response
     {
-        $contacts = $this->contactRepository->findAll();
       
+        $query = $this->contactRepository->createQueryBuilder('c')
+            ->getQuery();
+
+        $contacts = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1), 
+            5
+        );
+
         return $this->render('contact/homepage.html.twig', [
             'contacts' => $contacts
         ]);
