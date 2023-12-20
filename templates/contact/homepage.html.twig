@@ -23,7 +23,13 @@
                     <td>{{ contact.lastName }}</td>
                     <td>{{ contact.phoneNumber }}</td>
                     <td>{{ contact.email }}</td>
-                    <td>{{ contact.note }}</td>
+                    <td>
+                        {% if contact.note is not empty %}
+                            <button class="open-modal-btn">Zobrazit</button>
+                            <div class="hidden-note">{{ contact.note }}</div>
+                        {% endif %}
+                    </td>
+
                     <td>
                         <a href="{{ path('app_contact_edit', {'name': contact.firstName ~ '-' ~ contact.lastName, 'id': contact.id}) }}">
                             <button>Upravit</button>
@@ -37,8 +43,10 @@
         </tbody>
     </table>
 
-    {# Display pagination control #}
     <div class="pagination">
         {{ knp_pagination_render(contacts) }}
     </div>
+
+{% include 'contact/modal.html.twig' %}
+    
 {% endblock %}
