@@ -5,9 +5,18 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
+#[UniqueEntity(
+    fields: ['phoneNumber'],
+    message: 'Toto telefonní číslo je již používáno.'
+)]
+#[UniqueEntity(
+    fields: ['email'],
+    message: 'Tato e-mailová adresa je již používána.'
+)]
 class Contact
 {
     #[ORM\Id]
@@ -32,9 +41,17 @@ class Contact
     private ?string $lastName = null;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Regex(
+        pattern: '/^[0-9]*$/',
+        message: 'Telefonní číslo musí být v platném formátu 605605605',
+    )]
+    #[Assert\Length(
+        exactly: 9,
+        exactMessage: 'Telefonní číslo musí mít {{ limit }} znaků',
+    )]
     private ?string $phoneNumber = null;
     
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     #[Assert\Email(message: 'Toto není validní email')]
     private ?string $email = null;
 

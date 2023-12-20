@@ -3,7 +3,7 @@
 {% block title %}Kontakty{% endblock %}
 
 {% block body %}
-<h1>Editace kontaktu</h1>
+<h1>Kontakty</h1>
 <a href="{{ path('app_contact_new') }}"><button>Nový kontakt</button></a>
 <table border="1">
         <thead>
@@ -26,7 +26,7 @@
                     <td>
                         {% if contact.note is not empty %}
                             <button class="open-modal-btn">Zobrazit</button>
-                            <div class="hidden-note">{{ contact.note }}</div>
+                            <div class="hidden-note" style="display: none;">{{ contact.note }}</div>
                         {% endif %}
                     </td>
 
