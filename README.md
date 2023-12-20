@@ -16,19 +16,19 @@ Dále nybli specifikovány technologie a proto jsem pro vývoj používal mysql 
 Pro instalaci je potřeba composer a docker nebo vlastní databáze
 
 ## Spuštění kontejnerů pomocí Docker Compose (vytvoření testovací databáze)
-docker-compose up -d
+`docker-compose up -d`
 
 ## Instalace Composer závislostí
 spustit v adresáři projektu: 
-composer install
+`composer install`
 
 ## Vygenerování tabulek
-php bin/console doctrine:database:create
+`php bin/console doctrine:database:create
 php bin/console make:migration
-php bin/console doctrine:migrations:migrate
+php bin/console doctrine:migrations:migrate`
 
 ## Spuštění lokálního vývojového serveru
-php -S 127.0.0.1:8000 -t public
+`php -S 127.0.0.1:8000 -t public`
 
 ## Instalace dokončena. Aplikace je nyní dostupná na http://localhost:8000
 
@@ -37,18 +37,18 @@ php -S 127.0.0.1:8000 -t public
 ## Instalace vlastní DB
 
 ## Spuštění kontejnerů pomocí Docker Compose (vytvoření testovací databáze)
-v souboru .env nastavit proměnou DATABASE_URL na adresu vaší databáze
+`v souboru .env nastavit proměnou DATABASE_URL na adresu vaší databáze`
 
 ## Instalace Composer závislostí
 spustit v adresáři projektu: 
-composer install
+`composer install`
 
 ## Vygenerování tabulek
-php bin/console doctrine:database:create
+`php bin/console doctrine:database:create
 php bin/console make:migration
-php bin/console doctrine:migrations:migrate
+php bin/console doctrine:migrations:migrate`
 
 ## Spuštění lokálního vývojového serveru
-php -S 127.0.0.1:8000 -t public
+`php -S 127.0.0.1:8000 -t public`
 
 ## Instalace dokončena. Aplikace je nyní dostupná na http://localhost:8000
